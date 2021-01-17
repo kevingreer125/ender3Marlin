@@ -225,7 +225,7 @@
 
 #define PARKING_EXTRUDER_SOLENOIDS_INVERT          // If enabled, the solenoid is NOT magnetized with applied voltage
 #define PARKING_EXTRUDER_SOLENOIDS_PINS_ACTIVE LOW // LOW or HIGH pin signal energizes the coil
-#define PARKING_EXTRUDER_SOLENOIDS_DELAY 250       // (ms) Delay for magnetic field. No delay if 0 or not defined.
+#define PARKING_EXTRUDER_SOLENOIDS_DELAY 250       // (ms) Delay for magnetic field. No delay if 0 or not defined. \
                                                    //#define MANUAL_SOLENOID_CONTROL                   // Manual control of docking solenoids with M380 S / M381
 
 #elif ENABLED(MAGNETIC_PARKING_EXTRUDER)
@@ -350,7 +350,7 @@
 #define AUTO_POWER_CHAMBER_FAN
 //#define AUTO_POWER_E_TEMP        50 // (°C) Turn on PSU if any extruder is over this temperature
 //#define AUTO_POWER_CHAMBER_TEMP  30 // (°C) Turn on PSU if the chamber is over this temperature
-#define POWER_TIMEOUT 30 // (s) Turn off power if the machine is idle for this duration
+#define POWER_TIMEOUT 30 // (s) Turn off power if the machine is idle for this duration \
                          //#define POWER_OFF_DELAY          60 // (s) Delay of poweroff after M81 command. Useful to let fans run for extra time.
 #endif
 #endif
@@ -952,7 +952,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 
 /**
  * Touch-MI Probe by hotends.fr
@@ -966,8 +966,8 @@
  */
 //#define TOUCH_MI_PROBE
 #if ENABLED(TOUCH_MI_PROBE)
-#define TOUCH_MI_RETRACT_Z 0.5 // Height at which the probe retracts
-                               //#define TOUCH_MI_DEPLOY_XPOS (X_MAX_BED + 2)  // For a magnet on the right side of the bed
+#define TOUCH_MI_RETRACT_Z 0.5 // Height at which the probe retracts                                                        \
+                               //#define TOUCH_MI_DEPLOY_XPOS (X_MAX_BED + 2)  // For a magnet on the right side of the bed \
                                //#define TOUCH_MI_MANUAL_DEPLOY                // For manual deploy (LCD menu)
 #endif
 
@@ -1044,9 +1044,11 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
+
+//KEVIN - This is what you will need to adjust for the offset, X, Y, Z (we can talk about the z offset later)
 #define NOZZLE_TO_PROBE_OFFSET \
     {                          \
-        10, 10, 0              \
+        44, 16, 0              \
     }
 
 // Most probes should stay away from the edges of the bed, but
@@ -1069,7 +1071,7 @@
  */
 //#define PROBE_ACTIVATION_SWITCH
 #if ENABLED(PROBE_ACTIVATION_SWITCH)
-#define PROBE_ACTIVATION_SWITCH_STATE LOW // State indicating probe is active
+#define PROBE_ACTIVATION_SWITCH_STATE LOW // State indicating probe is active \
                                           //#define PROBE_ACTIVATION_SWITCH_PIN PC6 // Override default pin
 #endif
 
@@ -1368,7 +1370,7 @@
  *   With an LCD controller the process is guided step-by-step.
  */
 //#define AUTO_BED_LEVELING_3POINT
-//#define AUTO_BED_LEVELING_LINEAR
+#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
@@ -1494,7 +1496,7 @@
 
 #if ENABLED(LCD_BED_LEVELING)
 #define MESH_EDIT_Z_STEP 0.025 // (mm) Step size while manually probing Z axis.
-#define LCD_PROBE_Z_RANGE 4    // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
+#define LCD_PROBE_Z_RANGE 4    // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment \
                                //#define MESH_EDIT_MENU        // Add a menu to edit mesh points
 #endif
 
@@ -1512,7 +1514,7 @@
 //#define LEVEL_CORNERS_USE_PROBE
 #if ENABLED(LEVEL_CORNERS_USE_PROBE)
 #define LEVEL_CORNERS_PROBE_TOLERANCE 0.1
-#define LEVEL_CORNERS_VERIFY_RAISED // After adjustment triggers the probe, re-probe to verify
+#define LEVEL_CORNERS_VERIFY_RAISED // After adjustment triggers the probe, re-probe to verify \
                                     //#define LEVEL_CORNERS_AUDIO_FEEDBACK
 #endif
 
@@ -1565,7 +1567,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
 #define Z_SAFE_HOMING_X_POINT X_CENTER // X point for Z homing
@@ -1685,8 +1687,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL "PLA"
-#define PREHEAT_1_TEMP_HOTEND 185
-#define PREHEAT_1_TEMP_BED 45
+#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_BED 50
 #define PREHEAT_1_FAN_SPEED 255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL "ABS"
@@ -1861,10 +1863,10 @@
 #define PASSWORD_LENGTH 4 // (#) Number of digits (1-9). 3 or 4 is recommended
 #define PASSWORD_ON_STARTUP
 #define PASSWORD_UNLOCK_GCODE // Unlock with the M511 P<password> command. Disable to prevent brute-force attack.
-#define PASSWORD_CHANGE_GCODE // Change the password with M512 P<old> S<new>.
-                              //#define PASSWORD_ON_SD_PRINT_MENU       // This does not prevent gcodes from running
-                              //#define PASSWORD_AFTER_SD_PRINT_END
-                              //#define PASSWORD_AFTER_SD_PRINT_ABORT
+#define PASSWORD_CHANGE_GCODE // Change the password with M512 P<old> S<new>.                                        \
+                              //#define PASSWORD_ON_SD_PRINT_MENU       // This does not prevent gcodes from running \
+                              //#define PASSWORD_AFTER_SD_PRINT_END                                                  \
+                              //#define PASSWORD_AFTER_SD_PRINT_ABORT                                                \
                               //#include "Configuration_Secure.h"       // External file with PASSWORD_DEFAULT_VALUE
 #endif
 
@@ -2384,7 +2386,7 @@
 //#define ANYCUBIC_LCD_I3MEGA
 //#define ANYCUBIC_LCD_CHIRON
 #if EITHER(ANYCUBIC_LCD_I3MEGA, ANYCUBIC_LCD_CHIRON)
-#define LCD_SERIAL_PORT 3 // Default is 3 for Anycubic
+#define LCD_SERIAL_PORT 3 // Default is 3 for Anycubic \
                           //#define ANYCUBIC_LCD_DEBUG
 #endif
 
